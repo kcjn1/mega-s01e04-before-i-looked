@@ -16,6 +16,9 @@ const css = `
   th { color: var(--mute); font-weight: normal; }
   .warn { color: var(--warn); }
   .mute { color: var(--mute); }
+  .digest-scroll { overflow-x: auto; }
+  .digest-table { min-width: 72rem; }
+  .digest-table td { vertical-align: top; }
 `;
 
 export function Layout(props: { title: string; lane: Lane; children: Child }) {
@@ -25,6 +28,7 @@ export function Layout(props: { title: string; lane: Lane; children: Child }) {
       <html lang="en">
         <head>
           <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>rig · {props.title}</title>
           <style>{raw(css)}</style>
         </head>

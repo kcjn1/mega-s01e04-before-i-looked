@@ -3,7 +3,6 @@ import type { DigestRow } from '../digest/types.js';
 export function DigestPage({ night, rows, badLines }: { night: string; rows: DigestRow[]; badLines: number }) {
   return (
     <>
-      <style>{`.digest-scroll { overflow-x: auto; } .digest-table { min-width: 72rem; } .digest-table td { vertical-align: top; }`}</style>
       <h1>digest · {night}</h1>
       {badLines > 0 && <p class="warn">{badLines} bad {badLines === 1 ? 'line' : 'lines'} skipped</p>}
       {rows.length === 0 ? <p class="mute">nothing ran</p> : (
