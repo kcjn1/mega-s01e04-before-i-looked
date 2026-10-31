@@ -24,6 +24,18 @@ export function createApp(config: RigConfig = loadConfig()) {
     return c.html(<Layout title={`digest · ${digest.night}`} lane={lane()}><DigestPage night={digest.night} rows={digest.rows} badLines={digest.badLines} /></Layout>);
   });
 
+  app.get('/api/digest/:night', (c) => {
+    let digest;
+    try {
+      digest = readNight(config.runsDir, c.req.param('night'));
+    } catch (error: unknown) {
+      if (error instanceof RangeError) return c.notFound();
+      throw error;
+    }
+    if (!digest) return c.notFound();
+    return c.json(digest);
+  });
+
   app.get('/', (c) =>
     c.html(
       <Layout title="status" lane={lane()}>
