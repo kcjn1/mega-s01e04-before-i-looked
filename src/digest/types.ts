@@ -14,7 +14,7 @@ export type DigestRow = {
   /** Events with status "retry", a subset of runs. */
   retries: number;
   lastStatus: DigestStatus;
-  /** Error on the latest event, or null if absent. Do not retain old errors. */
+  /** Most recent recorded error, or null if this job has no error event. */
   lastError: string | null;
   /** Earliest event's original timestamp string, including its offset. */
   firstAt: string;
@@ -56,7 +56,9 @@ export type NightDigest = {
  * Compare timestamps by their instant, not their string or file order, but
  * preserve the original strings for display. For equal instants, earlier file
  * order wins firstAt and later file order wins lastAt and the latest event.
- * Take owner, lastStatus and lastError from that same latest event.
+ * Take owner and lastStatus from that same latest event. lastError is the
+ * most recent supplied error by instant and then file order; a later success
+ * without an error does not erase the last recorded error.
  * counts totals every valid event by status, even when a retry later succeeds.
  */
 export type ReadNight = (runsDir: string, night: string) => NightDigest | null;
