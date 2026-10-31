@@ -21,7 +21,11 @@ export function createApp(config: RigConfig = loadConfig()) {
       throw error;
     }
     if (!digest) return c.notFound();
-    return c.html(<Layout title={`digest · ${digest.night}`} lane={lane()}><DigestPage night={digest.night} rows={digest.rows} badLines={digest.badLines} /></Layout>);
+    return c.html(
+      <Layout title={`digest · ${digest.night}`} lane={lane()} wide>
+        <DigestPage night={digest.night} rows={digest.rows} badLines={digest.badLines} />
+      </Layout>,
+    );
   });
 
   app.get('/api/digest/:night', (c) => {

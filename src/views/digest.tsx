@@ -14,7 +14,9 @@ export function DigestPage({ night, rows, badLines }: { night: string; rows: Dig
               <td>{row.job}</td><td>{row.owner ?? 'not provided'}</td><td>{row.runs}</td>
               <td>{row.retries >= 3 ? <span class="warn">{row.retries} retries, warning</span> : row.retries}</td>
               <td>{row.lastStatus === 'fail' ? <span class="warn">fail, warning</span> : row.lastStatus}</td>
-              <td>{row.lastError ?? 'not provided'}</td><td>{row.firstAt}</td><td>{row.lastAt}</td>
+              <td>{row.lastError ?? 'not provided'}</td>
+              <td class="digest-time">{row.firstAt}</td>
+              <td class="digest-time">{row.lastAt}</td>
             </tr>)}</tbody>
           </table>
         </div>

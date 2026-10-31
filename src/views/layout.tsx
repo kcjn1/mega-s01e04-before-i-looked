@@ -11,6 +11,7 @@ const css = `
   header { display: flex; gap: 1.5rem; padding: .75rem 1.25rem; border-bottom: 1px solid var(--line); }
   header .marker { margin-left: auto; color: var(--mute); }
   main { padding: 1.25rem; max-width: 60rem; }
+  main.wide { max-width: none; }
   table { border-collapse: collapse; width: 100%; }
   th, td { text-align: left; padding: .35rem .75rem .35rem 0; border-bottom: 1px solid var(--line); }
   th { color: var(--mute); font-weight: normal; }
@@ -19,9 +20,10 @@ const css = `
   .digest-scroll { overflow-x: auto; }
   .digest-table { min-width: 72rem; }
   .digest-table td { vertical-align: top; }
+  .digest-time { white-space: nowrap; }
 `;
 
-export function Layout(props: { title: string; lane: Lane; children: Child }) {
+export function Layout(props: { title: string; lane: Lane; children: Child; wide?: boolean }) {
   return (
     <>
       {raw('<!doctype html>')}
@@ -38,7 +40,7 @@ export function Layout(props: { title: string; lane: Lane; children: Child }) {
             <span>{props.lane.id}</span>
             <span class="marker">{props.lane.marker ?? 'no marker set'}</span>
           </header>
-          <main>{props.children}</main>
+          <main class={props.wide ? 'wide' : undefined}>{props.children}</main>
         </body>
       </html>
     </>
