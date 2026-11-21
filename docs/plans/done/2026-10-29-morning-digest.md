@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-11-21
 ---
 
 # Morning digest
@@ -77,3 +78,18 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Blocked by | Worker | Closed |
+|---|-------|-----------|--------|--------|
+| 1 | Define the digest reader contract | nothing | T3 Code / Codex · gpt-6-astra · high | 2026-10-31 |
+| 2 | Read and aggregate a night's run log | #1 | T3 Code / Codex · gpt-6-astra · high | 2026-10-31 |
+| 3 | Render GET /digest/:night | #1 | T3 Code / Codex · gpt-6.1-sol · high | 2026-10-31 |
+| 4 | Serve GET /api/digest/:night | #1 | T3 Code / Codex · gpt-6-luna · medium | 2026-10-31 |
+| 5 | Link the status board to each night's digest | #1 | T3 Code / Codex · gpt-6-luna · medium | 2026-10-31 |
+| 6 | Test the digest HTML and JSON routes | #1 | T3 Code / Codex · gpt-6-luna + gpt-6.1-sol · medium + high | 2026-10-31 |
+| 7 | Export and submit a public digest preview | #2 to #6 | T3 Code / Codex · gpt-6.1-sol · high | 2026-10-31 |
+| 8 | Remove the preview marker and archive the plan | #7 | claude-code · opus-5.5 · default | 2026-11-21 |
+
+The preview stayed up with the lane marker from 31 October until 21 November, because #8 was left open. See ADR 0003.
